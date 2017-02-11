@@ -1,13 +1,23 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 
 import static com.qualcomm.ftccommon.R.layout.servo;
 /**
  * Created by Travis on 1/7/2017.
- */
+ *
 
 public class NewDrive extends OpMode {
     DcMotor W0;
@@ -22,7 +32,7 @@ public class NewDrive extends OpMode {
     }
     @Override
     public void loop(){
-        double x = gamepad1.left_stick_x;
+        double x = gamepad1.left_stick_x; //
         double y = -gamepad1.left_stick_y;
         double angle = 90;
         if(x==0){
@@ -54,4 +64,4 @@ public class NewDrive extends OpMode {
     }
 
 }
-
+*/

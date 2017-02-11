@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -20,6 +21,7 @@ public class JavaClass extends OpMode {
     DcMotor launcherWheelfront;
     DcMotor spinner;
     Servo launcher;
+    ModernRoboticsI2cRangeSensor rangeSensor;
 
     @Override
     public void init() {
@@ -36,7 +38,7 @@ public class JavaClass extends OpMode {
         rightWheelfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         spinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launcher = hardwareMap.servo.get("launcherservo");
-    }
+   }
 
 
     @Override
@@ -67,13 +69,10 @@ public class JavaClass extends OpMode {
         double drive2 = gamepad1.right_stick_x;
         double drive3 = gamepad1.right_trigger;
 
-        if (gamepad1.left_bumper) {
-            rightWheelfront.setPower(-drive3);
-            leftWheelfront.setPower(-drive3);
-        } else {
-            rightWheelfront.setPower(-drive3 + gamepad1.right_stick_x);
-            leftWheelfront.setPower(drive3 + gamepad1.right_stick_x);
-        }
+        leftWheelfront.setPower(gamepad1.left_stick_y-gamepad1.right_stick_x);
+        rightWheelfront.setPower(gamepad1.left_stick_y-gamepad1.right_stick_x);
+
+
 //only front wheel drive
 //very smooth drive
         //rightWheelfront.setPower(gamepad1.right_stick_y);
@@ -84,7 +83,7 @@ public class JavaClass extends OpMode {
             launcherWheelback.setPower(-1);
             launcherWheelfront.setPower(-1);
         }
-        if (gamepad1.dpad_up) {
+        if(gamepad1.dpad_up) {
             launcherWheelback.setPower(0);
             launcherWheelfront.setPower(0);
         }
