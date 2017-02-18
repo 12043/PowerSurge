@@ -165,13 +165,13 @@ public class JavaClass extends OpMode {
         }
         launcher.setPosition(0.9);
 
-        if(gamepad1.right_trigger > 0.1){
+        if(gamepad1.start){
             //The beacon position is just a guess.
             beacon1.setPosition(1);
         }else{
             beacon1.setPosition(0);
         }
-        if(gamepad1.left_trigger > 0.1){
+        if(gamepad1.back){
             //The beacon position is just a guess.
             beacon2.setPosition(1);
         }else{
