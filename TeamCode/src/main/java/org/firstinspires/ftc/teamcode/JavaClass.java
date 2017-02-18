@@ -22,8 +22,7 @@ public class JavaClass extends OpMode {
     DcMotor launcherWheelfront;
     DcMotor spinner;
     Servo launcher;
-    Servo beacon1;
-    Servo beacon2;
+    Servo LeftPusher,RightPusher;
     ModernRoboticsI2cRangeSensor rangeSensor;
 
     @Override
@@ -41,8 +40,8 @@ public class JavaClass extends OpMode {
         rightWheelfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         spinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launcher = hardwareMap.servo.get("launcherservo");
-        beacon1 = hardwareMap.servo.get("beacon1");
-        beacon2 = hardwareMap.servo.get("beacon2");
+        RightPusher = hardwareMap.servo.get("RightPusher");
+        LeftPusher = hardwareMap.servo.get("LeftPusher");
    }
 
 
@@ -56,6 +55,8 @@ public class JavaClass extends OpMode {
         telemetry.addData("Power to _spinner", spinner.getPower());
         telemetry.addData("Position of servo", launcher.getPosition());
         telemetry.addData("right trigger position", gamepad1.right_trigger);
+        telemetry.addData("left pusher position", LeftPusher.getPosition());
+        telemetry.addData("right pusher position", RightPusher.getPosition());
         telemetry.update();
 
         double drive1 = gamepad1.right_stick_y;//currently unused in program
@@ -92,7 +93,7 @@ public class JavaClass extends OpMode {
         }
         else if(gamepad1.right_stick_x == 0)
         {
-            leftWheelfront.setPower(gamepad1.left_stick_y);
+            leftWheelfront.setPower(-gamepad1.left_stick_y);
             rightWheelfront.setPower(gamepad1.left_stick_y);
         }
         else if (gamepad1.right_stick_x < 0)
@@ -108,15 +109,14 @@ public class JavaClass extends OpMode {
     }//setMovement_3
     public void setParticleInteraction_1()
     {//This method used the first 3 competitions
-        double LTriggerPosition = gamepad1.left_trigger;
-        if (LTriggerPosition != 0) {
-            launcher.setPosition(5);
+        if (gamepad1.a) {
+            launcher.setPosition(.5);
         } else {
             launcher.setPosition(0);
         }
         
         if (gamepad1.dpad_left) {
-            spinner.setPower(1);
+            spinner.setPower(-1);
         }
         if (gamepad1.dpad_right) {
             spinner.setPower(0);
@@ -124,11 +124,21 @@ public class JavaClass extends OpMode {
 
         if (gamepad1.dpad_down) {
             launcherWheelback.setPower(-1);
-            launcherWheelfront.setPower(-1);
+            launcherWheelfront.setPower(1);
         }
         if(gamepad1.dpad_up) {
             launcherWheelback.setPower(0);
             launcherWheelfront.setPower(0);
+        }
+        if(gamepad1.start){
+            //The beacon position is just a guess.
+            LeftPusher.setPosition(1);
+            RightPusher.setPosition(0);
+        }
+        if(gamepad1.back){
+            //The beacon position is just a guess.
+            LeftPusher.setPosition(0);
+            RightPusher.setPosition(1);
         }
     }//setParticleInteraction_1()
     
@@ -163,20 +173,11 @@ public class JavaClass extends OpMode {
         {
             spinner.setPower(-1);
         }
-        launcher.setPosition(0.9);
+        if(gamepad1.right_trigger ==0)
+        {
+            launcher.setPosition(0.9);
+        }
 
-        if(gamepad1.start){
-            //The beacon position is just a guess.
-            beacon1.setPosition(1);
-        }else{
-            beacon1.setPosition(0);
-        }
-        if(gamepad1.back){
-            //The beacon position is just a guess.
-            beacon2.setPosition(1);
-        }else{
-            beacon2.setPosition(0);
-        }
 
     }//setParticleInteraction_2()
     

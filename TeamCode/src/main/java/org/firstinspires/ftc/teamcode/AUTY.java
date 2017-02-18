@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -36,19 +37,22 @@ public class AUTY extends LinearOpMode{
     DcMotor leftMotor,rightMotor,backlauncher,frontlauncher;
     Servo Servo1;
     ModernRoboticsI2cGyro gyro;
-    ColorSensor color;
+    ModernRoboticsI2cColorSensor color;
     @Override public void runOpMode() {
         leftMotor = hardwareMap.dcMotor.get("left_wheelfront");
         rightMotor = hardwareMap.dcMotor.get("right_wheelfront");
         backlauncher = hardwareMap.dcMotor.get("backlauncher");
         frontlauncher = hardwareMap.dcMotor.get("frontlauncher");
         Servo1 = hardwareMap.servo.get("launcherservo");
-        color = hardwareMap.colorSensor.get("color");
+        color = (ModernRoboticsI2cColorSensor)hardwareMap.colorSensor.get("color");
         gyro = (ModernRoboticsI2cGyro) hardwareMap.gyroSensor.get("gyro");
         leftMotor.setMode(RUN_USING_ENCODER);
         rightMotor.setMode(RUN_USING_ENCODER);
         telemetry.addData("Status", "Resetting Encoders");    //
         telemetry.update();
+        gyro.calibrate();
+        idle();
+
 
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -64,7 +68,6 @@ public class AUTY extends LinearOpMode{
         telemetry.update();
         gyro.calibrate();
 
-
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         if(gyro.isCalibrating()){
@@ -72,9 +75,11 @@ public class AUTY extends LinearOpMode{
         }else{
             steps[0]=true;
 
+
             //calibrate color sensor
         }
         if(steps[0]=true){
+
             Servo1.setPosition(.4);
             encoderDrive(DRIVE_SPEED, 36,-36,5.0);//move forward 36in with a 5 sec timeout
             encoderDrive(TURN_SPEED, 12,12,4.0);//turn right 12in with a 4 sec timeout
