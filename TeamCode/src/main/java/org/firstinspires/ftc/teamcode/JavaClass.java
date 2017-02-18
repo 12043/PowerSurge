@@ -42,6 +42,8 @@ public class JavaClass extends OpMode {
         launcher = hardwareMap.servo.get("launcherservo");
         RightPusher = hardwareMap.servo.get("RightPusher");
         LeftPusher = hardwareMap.servo.get("LeftPusher");
+        LeftPusher.setPosition(0);
+        RightPusher.setPosition(1);
    }
 
 
@@ -86,12 +88,12 @@ public class JavaClass extends OpMode {
     public void setMovement_3()//smooth turning method
     {
         //drive functions
-        if((gamepad1.left_stick_y == 0) && (gamepad1.right_stick_x != 0))
+        if((gamepad1.left_stick_y < .1 && gamepad1.left_stick_y > -.1) && (gamepad1.right_stick_x != 0))
         {
             leftWheelfront.setPower(gamepad1.right_stick_x);
             rightWheelfront.setPower(gamepad1.right_stick_x);
         }
-        else if(gamepad1.right_stick_x == 0)
+        else if(gamepad1.right_stick_x < .1 && gamepad1.right_stick_x > -.1)
         {
             leftWheelfront.setPower(-gamepad1.left_stick_y);
             rightWheelfront.setPower(gamepad1.left_stick_y);
@@ -130,13 +132,11 @@ public class JavaClass extends OpMode {
             launcherWheelback.setPower(0);
             launcherWheelfront.setPower(0);
         }
-        if(gamepad1.start){
-            //The beacon position is just a guess.
+        if(gamepad1.y){
             LeftPusher.setPosition(1);
             RightPusher.setPosition(0);
         }
-        if(gamepad1.back){
-            //The beacon position is just a guess.
+        if(gamepad1.x){
             LeftPusher.setPosition(0);
             RightPusher.setPosition(1);
         }
