@@ -24,7 +24,7 @@ public class Conroy extends OpMode {
         rightWheelfront = hardwareMap.dcMotor.get("right_wheelfront");
         launcherWheelfront = hardwareMap.dcMotor.get("frontlancher");
         launcherWheelback = hardwareMap.dcMotor.get("backlauncher");
-        spinner = hardwareMap.dcMotor.get("spinner");
+        spinner = hardwareMap.dcMotor.get("_spinner");
         launcher = hardwareMap.servo.get("launcherservo");
         launcherWheelfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         launcherWheelback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);

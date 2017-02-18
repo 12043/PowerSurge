@@ -107,7 +107,7 @@ public class JoshsNewDrive extends OpMode {
                 Spinner_right.setPower(0);
                 Spinner_left.setPower(0);
             }
-            //setting power to spinner
+            //setting power to _spinner
             if (gamepad1.dpad_left) {
                 Back_Launcher.setPower(1);
                 Front_Launcher.setPower(1);
@@ -116,7 +116,7 @@ public class JoshsNewDrive extends OpMode {
                 Back_Launcher.setPower(0);
                 Front_Launcher.setPower(0);
             }
-            //setting power to launcher
+            //setting power to _launcher
 
         }
 

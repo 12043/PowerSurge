@@ -65,10 +65,12 @@ public class FtcOpModeRegister implements OpModeRegister {
      */
     public void register(OpModeManager manager) {
         manager.register("Skeleton OpMode",SkeletonOpMode.class);
-        manager.register("Best OpMode",JavaClass.class);
+        // manager.register("Best OpMode",JavaClass.class);
         manager.register("Conroy OpMode",Conroy.class);
         manager.register("AutonomousBallShooting",AutonomousBallShooting.class);
         manager.register("JoshsTriange",JoshsNewDrive.class);
+        manager.register("teleopmater2", teleopmater2.class);
+        manager.register("Auty", AUTY.class);
 
         /**
          * Register OpModes implemented in the Blocks visual programming language.
